@@ -1,0 +1,1 @@
+avrdude -c jtag1 -p m128 -P COM3 -U flash:w:tbird_base_test.hex
