@@ -19,5 +19,5 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
-SW \
+SW/OS/BT_CentralEntryPoint/Src \
 

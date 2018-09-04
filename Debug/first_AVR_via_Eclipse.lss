@@ -9,27 +9,27 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   2 .bss          00000001  00800108  00800108  00000e12  2**0
                   ALLOC
-  3 .stab         00000438  00000000  00000000  00000e14  2**2
+  3 .stab         0000045c  00000000  00000000  00000e14  2**2
                   CONTENTS, READONLY, DEBUGGING
-  4 .stabstr      00000783  00000000  00000000  0000124c  2**0
+  4 .stabstr      000007ad  00000000  00000000  00001270  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_aranges 00000140  00000000  00000000  000019cf  2**0
+  5 .debug_aranges 00000140  00000000  00000000  00001a1d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_pubnames 00000170  00000000  00000000  00001b0f  2**0
+  6 .debug_pubnames 00000170  00000000  00000000  00001b5d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_info   00001c49  00000000  00000000  00001c7f  2**0
+  7 .debug_info   00001c49  00000000  00000000  00001ccd  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 00000eeb  00000000  00000000  000038c8  2**0
+  8 .debug_abbrev 00000eeb  00000000  00000000  00003916  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_line   00000dad  00000000  00000000  000047b3  2**0
+  9 .debug_line   00000dad  00000000  00000000  00004801  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_frame  00000160  00000000  00000000  00005560  2**2
+ 10 .debug_frame  00000160  00000000  00000000  000055b0  2**2
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_str    0000028e  00000000  00000000  000056c0  2**0
+ 11 .debug_str    0000028e  00000000  00000000  00005710  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_loc    000007ce  00000000  00000000  0000594e  2**0
+ 12 .debug_loc    000007ce  00000000  00000000  0000599e  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_ranges 00000050  00000000  00000000  0000611c  2**0
+ 13 .debug_ranges 00000050  00000000  00000000  0000616c  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -1467,11 +1467,6 @@ Disassembly of section .text:
  b80:	08 95       	ret
 
 00000b82 <main>:
-#include <avr/io.h>
-#include <avr/delay.h>
-
-void main()
-{
  b82:	df 93       	push	r29
  b84:	cf 93       	push	r28
  b86:	cd b7       	in	r28, 0x3d	; 61
@@ -1482,28 +1477,17 @@ void main()
  b90:	de bf       	out	0x3e, r29	; 62
  b92:	0f be       	out	0x3f, r0	; 63
  b94:	cd bf       	out	0x3d, r28	; 61
-
-    DDRB = 0xFF;         //PB as output
  b96:	e7 e3       	ldi	r30, 0x37	; 55
  b98:	f0 e0       	ldi	r31, 0x00	; 0
  b9a:	8f ef       	ldi	r24, 0xFF	; 255
  b9c:	80 83       	st	Z, r24
-    DDRD = 0xFF;         //PB as output
  b9e:	e1 e3       	ldi	r30, 0x31	; 49
  ba0:	f0 e0       	ldi	r31, 0x00	; 0
  ba2:	8f ef       	ldi	r24, 0xFF	; 255
  ba4:	80 83       	st	Z, r24
-
-    while(1)
-    {
-    	static char shifter_u8 = 0;
-
-    	if (shifter_u8 <= 3)
  ba6:	80 91 08 01 	lds	r24, 0x0108
  baa:	84 30       	cpi	r24, 0x04	; 4
  bac:	b0 f4       	brcc	.+44     	; 0xbda <main+0x58>
-    	{
-    		PORTB = 1<<shifter_u8+4;
  bae:	e8 e3       	ldi	r30, 0x38	; 56
  bb0:	f0 e0       	ldi	r31, 0x00	; 0
  bb2:	80 91 08 01 	lds	r24, 0x0108
@@ -1521,25 +1505,19 @@ void main()
  bcc:	0a 94       	dec	r0
  bce:	e2 f7       	brpl	.-8      	; 0xbc8 <main+0x46>
  bd0:	80 83       	st	Z, r24
-    		PORTD = 0;
  bd2:	e2 e3       	ldi	r30, 0x32	; 50
  bd4:	f0 e0       	ldi	r31, 0x00	; 0
  bd6:	10 82       	st	Z, r1
  bd8:	1d c0       	rjmp	.+58     	; 0xc14 <main+0x92>
-    	}
-    	else if (shifter_u8 > 3 && shifter_u8 < 8)
  bda:	80 91 08 01 	lds	r24, 0x0108
  bde:	84 30       	cpi	r24, 0x04	; 4
  be0:	b8 f0       	brcs	.+46     	; 0xc10 <main+0x8e>
  be2:	80 91 08 01 	lds	r24, 0x0108
  be6:	88 30       	cpi	r24, 0x08	; 8
  be8:	98 f4       	brcc	.+38     	; 0xc10 <main+0x8e>
-		{
-    		PORTB = 0;
  bea:	e8 e3       	ldi	r30, 0x38	; 56
  bec:	f0 e0       	ldi	r31, 0x00	; 0
  bee:	10 82       	st	Z, r1
-    		PORTD = 1<<shifter_u8;
  bf0:	e2 e3       	ldi	r30, 0x32	; 50
  bf2:	f0 e0       	ldi	r31, 0x00	; 0
  bf4:	80 91 08 01 	lds	r24, 0x0108
@@ -1555,14 +1533,7 @@ void main()
  c0a:	e2 f7       	brpl	.-8      	; 0xc04 <main+0x82>
  c0c:	80 83       	st	Z, r24
  c0e:	02 c0       	rjmp	.+4      	; 0xc14 <main+0x92>
-		}
-    	else
-		{
-    		shifter_u8 = 0;
  c10:	10 92 08 01 	sts	0x0108, r1
-		}
-
-    	shifter_u8++;
  c14:	80 91 08 01 	lds	r24, 0x0108
  c18:	8f 5f       	subi	r24, 0xFF	; 255
  c1a:	80 93 08 01 	sts	0x0108, r24
@@ -1574,12 +1545,6 @@ void main()
  c28:	9c 87       	std	Y+12, r25	; 0x0c
  c2a:	ad 87       	std	Y+13, r26	; 0x0d
  c2c:	be 87       	std	Y+14, r27	; 0x0e
- */
-void
-_delay_ms(double __ms)
-{
-	uint16_t __ticks;
-	double __tmp = ((F_CPU) / 4e3) * __ms;
  c2e:	6b 85       	ldd	r22, Y+11	; 0x0b
  c30:	7c 85       	ldd	r23, Y+12	; 0x0c
  c32:	8d 85       	ldd	r24, Y+13	; 0x0d
@@ -1595,7 +1560,6 @@ _delay_ms(double __ms)
  c48:	98 87       	std	Y+8, r25	; 0x08
  c4a:	a9 87       	std	Y+9, r26	; 0x09
  c4c:	ba 87       	std	Y+10, r27	; 0x0a
-	if (__tmp < 1.0)
  c4e:	6f 81       	ldd	r22, Y+7	; 0x07
  c50:	78 85       	ldd	r23, Y+8	; 0x08
  c52:	89 85       	ldd	r24, Y+9	; 0x09
@@ -1607,13 +1571,11 @@ _delay_ms(double __ms)
  c5e:	0e 94 97 03 	call	0x72e	; 0x72e <__ltsf2>
  c62:	88 23       	and	r24, r24
  c64:	2c f4       	brge	.+10     	; 0xc70 <main+0xee>
-		__ticks = 1;
  c66:	81 e0       	ldi	r24, 0x01	; 1
  c68:	90 e0       	ldi	r25, 0x00	; 0
  c6a:	9e 83       	std	Y+6, r25	; 0x06
  c6c:	8d 83       	std	Y+5, r24	; 0x05
  c6e:	3f c0       	rjmp	.+126    	; 0xcee <main+0x16c>
-	else if (__tmp > 65535)
  c70:	6f 81       	ldd	r22, Y+7	; 0x07
  c72:	78 85       	ldd	r23, Y+8	; 0x08
  c74:	89 85       	ldd	r24, Y+9	; 0x09
@@ -1625,9 +1587,6 @@ _delay_ms(double __ms)
  c80:	0e 94 37 03 	call	0x66e	; 0x66e <__gtsf2>
  c84:	18 16       	cp	r1, r24
  c86:	4c f5       	brge	.+82     	; 0xcda <main+0x158>
-	{
-		//	__ticks = requested delay in 1/10 ms
-		__ticks = (uint16_t) (__ms * 10.0);
  c88:	6b 85       	ldd	r22, Y+11	; 0x0b
  c8a:	7c 85       	ldd	r23, Y+12	; 0x0c
  c8c:	8d 85       	ldd	r24, Y+13	; 0x0d
@@ -1651,45 +1610,22 @@ _delay_ms(double __ms)
  cb4:	91 e0       	ldi	r25, 0x01	; 1
  cb6:	9c 83       	std	Y+4, r25	; 0x04
  cb8:	8b 83       	std	Y+3, r24	; 0x03
-    milliseconds can be achieved.
- */
-void
-_delay_loop_2(uint16_t __count)
-{
-	__asm__ volatile (
  cba:	8b 81       	ldd	r24, Y+3	; 0x03
  cbc:	9c 81       	ldd	r25, Y+4	; 0x04
  cbe:	01 97       	sbiw	r24, 0x01	; 1
  cc0:	f1 f7       	brne	.-4      	; 0xcbe <main+0x13c>
  cc2:	9c 83       	std	Y+4, r25	; 0x04
  cc4:	8b 83       	std	Y+3, r24	; 0x03
-		while(__ticks)
-		{
-			// wait 1/10 ms
-			_delay_loop_2(((F_CPU) / 4e3) / 10);
-			__ticks --;
  cc6:	8d 81       	ldd	r24, Y+5	; 0x05
  cc8:	9e 81       	ldd	r25, Y+6	; 0x06
  cca:	01 97       	sbiw	r24, 0x01	; 1
  ccc:	9e 83       	std	Y+6, r25	; 0x06
  cce:	8d 83       	std	Y+5, r24	; 0x05
-		__ticks = 1;
-	else if (__tmp > 65535)
-	{
-		//	__ticks = requested delay in 1/10 ms
-		__ticks = (uint16_t) (__ms * 10.0);
-		while(__ticks)
  cd0:	8d 81       	ldd	r24, Y+5	; 0x05
  cd2:	9e 81       	ldd	r25, Y+6	; 0x06
  cd4:	00 97       	sbiw	r24, 0x00	; 0
  cd6:	69 f7       	brne	.-38     	; 0xcb2 <main+0x130>
  cd8:	66 cf       	rjmp	.-308    	; 0xba6 <main+0x24>
-			__ticks --;
-		}
-		return;
-	}
-	else
-		__ticks = (uint16_t)__tmp;
  cda:	6f 81       	ldd	r22, Y+7	; 0x07
  cdc:	78 85       	ldd	r23, Y+8	; 0x08
  cde:	89 85       	ldd	r24, Y+9	; 0x09

@@ -1,7 +1,7 @@
 #include <avr/io.h>
-#include <avr/delay.h>
+#include <util/delay.h>
 
-void main()
+int main()
 {
 
     DDRB = 0xFF;         //PB as output
@@ -14,7 +14,7 @@ void main()
 
     	if (shifter_u8 <= 3)
     	{
-    		PORTB = 1<<shifter_u8+4;
+    		PORTB = 1<<(shifter_u8+4);
     		PORTD = 0;
     	}
     	else if (shifter_u8 > 3 && shifter_u8 < 8)
@@ -31,4 +31,6 @@ void main()
     	_delay_ms(1000);
 
     };
+
+    return 0;
 }
