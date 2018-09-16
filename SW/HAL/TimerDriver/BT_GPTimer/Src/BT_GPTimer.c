@@ -17,6 +17,13 @@ void BT_GPTimer_onReset()
 	BT_GPTimer_InitTimer1();
 }
 
+void BT_GPTimer_ResetTimer1Value()
+{
+	TCNT1 = 0x0000;
+}
+
+
+// Brief: Get the Timer1 register's value which 2^4 * 1000000 / sec
 uint16_t BT_GPTimer_GetTimer1Value()
 {
 	return ((uint16_t)TCNT1);

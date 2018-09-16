@@ -8,15 +8,21 @@ ASM_SRCS :=
 C_SRCS := 
 S_UPPER_SRCS := 
 O_SRCS := 
+FLASH_IMAGE := 
 ELFS := 
 OBJS := 
 ASM_DEPS := 
+EEPROM_IMAGE := 
 S_DEPS := 
+SIZEDUMMY := 
 S_UPPER_DEPS := 
+LSS := 
 C_DEPS := 
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+SW/HAL/TimerDriver/BT_GPTimer/Src \
+SW/HAL/TimerDriver/BT_LifeTimer/Src \
+SW/OS/BT_CentralEventDispatcher/Src \
 SW/OS/main/Src \
-test/SW/OS/main/Src \
 

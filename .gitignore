@@ -52,3 +52,6 @@ Mkfile.old
 dkms.conf
 /test/
 /Modified_Entry_Point/
+/Debug/
+/Release0/
+/Release/

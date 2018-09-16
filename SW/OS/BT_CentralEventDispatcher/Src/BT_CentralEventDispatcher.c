@@ -1,4 +1,5 @@
-
+#include "BT_GPTimer_Public.h"
+#include "BT_LifeTimer_Public.h"
 
 void BT_CentralEventDispatcher_onReset(void)
 {
@@ -9,7 +10,10 @@ void BT_CentralEventDispatcher_onReset(void)
 
 void BT_CentralEventDispatcher_onCyclic(void)
 {
-
+	while(1)
+	{
+		BT_LifeTimer_Api_onCyclic();
+	}
 }
 
 
