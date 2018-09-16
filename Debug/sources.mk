@@ -19,5 +19,8 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
-SW/OS/BT_CentralEntryPoint/Src \
+SW/HAL/TimerDriver/BT_GPTimer/Src \
+SW/HAL/TimerDriver/BT_LifeTimer/Src \
+SW/OS/BT_CentralEventDispatcher/Src \
+SW/OS/main/Src \
 

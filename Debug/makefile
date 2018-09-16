@@ -8,7 +8,10 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include SW/OS/BT_CentralEntryPoint/Src/subdir.mk
+-include SW/OS/main/Src/subdir.mk
+-include SW/OS/BT_CentralEventDispatcher/Src/subdir.mk
+-include SW/HAL/TimerDriver/BT_LifeTimer/Src/subdir.mk
+-include SW/HAL/TimerDriver/BT_GPTimer/Src/subdir.mk
 -include subdir.mk
 -include objects.mk
 

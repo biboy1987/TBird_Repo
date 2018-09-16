@@ -1,0 +1,7 @@
+
+-------- avarice ----------
+avarice --program --file first_AVR_via_Eclipse.elf --part atmega128 --mkI --jtag /dev/ttyS2 :4242
+
+-------- avr-gcc ----------
+avr-gdb first_AVR_via_Eclipse.elf
+(gdb) target remote localhost:4242
